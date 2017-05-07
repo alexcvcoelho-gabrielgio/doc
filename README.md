@@ -54,6 +54,9 @@ Definicao generica dos modelos que serao utizados entres os servidos.
 }
 ```
 
-## Commands e Query
+## Commands
+[Session](http://gabrielgio.com.br:3000/swagger-ui/index.html#/session)
+
+## Query
 Essa documentacao sera gerada pelo swagger-ui, em breve.
 
