@@ -50,7 +50,7 @@ Definicao generica dos modelos que serao utizados entres os servidos.
         :long Double ;;longitude
       }
   :vel Double ;;valocidade do carro
-  :gas-lvl Double ;; nivel da casolina
+  :gas-lvl Double ;; nivel da gasolina
 }
 ```
 
