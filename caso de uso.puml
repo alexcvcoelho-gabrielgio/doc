@@ -1,0 +1,26 @@
+@startuml
+
+frame Cidade {
+    actor veiculo
+    actor ambulancia
+    actor hospital
+    cloud nuvem
+    veiculo <|-- ambulancia
+    veiculo --> (Emite alerta)
+    nuvem <-- (Emite alerta)
+    nuvem --> (Recebe alerta sobre a ambulancia)
+    veiculo <-- (Recebe alerta sobre a ambulancia)
+    nuvem --> (Perigo a frente)
+    veiculo <-- (Perigo a frente)
+    ambulancia --> (informa trajeto)
+    nuvem <-- (informa trajeto)
+    nuvem --> (perigo a frente)
+    veiculo <-- (perigo a frente)
+    ambulancia --> (informacao do paciente)
+    nuvem <-- (informacao do paciente)
+    hospital <-- (evniar informacao do paciente)
+    nuvem --> (evniar informacao do paciente)
+}
+
+
+@enduml

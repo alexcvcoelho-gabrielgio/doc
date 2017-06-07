@@ -1,0 +1,14 @@
+@startuml
+UI --> API: Envia mensagem de atulização
+API --> UI: Envia uma mensagem HTTP Ok (200)
+API --> REDIS: Escreve a mensagem em uma lista
+REDIS --> "Session-Worker": Envia comando
+"Session-Worker" --> "Session-Worker": Validações e regras de negocios
+"Session-Worker" --> Datomic: escreve historico
+"Session-Worker" --> Mongo: atualiza dado completo
+newpage
+UI --> API: GET /api/session/{session-id}
+API --> Mongo: Busca pela informacao
+API <-- Mongo: Informação completa
+API --> UI: Parse infomação para o usuarios
+@enduml

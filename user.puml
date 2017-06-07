@@ -1,0 +1,27 @@
+@startuml
+
+package "User API" {
+    [QuerySession]
+    [CommandSession]
+}
+
+package Process{
+    [SessionWorker]
+}
+
+database redis
+database mongo
+database datomic
+
+
+
+CommandSession "\nEscreve um comando"-right-> redis
+QuerySession "\nRequisita uma informação"-right-> mongo
+
+redis "Event Soucing"-right-> SessionWorker
+
+SessionWorker "Escreve no cache"-left-> mongo
+
+SessionWorker "Escreve historico\nEscreve as atualizações"--> datomic
+
+@enduml
