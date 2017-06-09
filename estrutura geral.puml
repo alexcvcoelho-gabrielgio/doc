@@ -1,0 +1,45 @@
+@startuml
+
+skinparam interface {
+  backgroundColor RosyBrown
+  borderColor orange
+}
+
+skinparam component {
+  FontSize 13
+  BackgroundColor<<Apache>> Red
+  BorderColor<<Apache>> #FF6655
+  FontName Courier
+  BorderColor black
+  BackgroundColor gold
+  ArrowFontName Impact
+  ArrowColor #FF6655
+  ArrowFontColor #777777
+}
+
+package "UI" {
+    [Dispositivo embarcado]
+}
+
+package "API"{
+    [Command Session]
+    [Query Session]
+}
+
+package "Banco de dados"{
+    database REDIS
+    database MongoDB
+    database Datomic
+}
+
+
+package "Process"{
+    [Session Worker]
+}
+
+[Command Session] -right-> REDIS
+[Query Session] -right-> MongoDB
+REDIS -left-> [Session Worker]
+[Session Worker] -right-> Datomic
+
+@enduml
