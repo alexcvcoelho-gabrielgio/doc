@@ -5,6 +5,9 @@ skinparam interface {
   borderColor orange
 }
 
+
+scale 1920*1080
+
 skinparam component {
   FontSize 13
   BackgroundColor<<Apache>> Red
@@ -41,5 +44,9 @@ package "Process"{
 [Query Session] -right-> MongoDB
 REDIS -left-> [Session Worker]
 [Session Worker] -right-> Datomic
+[Session Worker] -right-> MongoDB
+
+[Dispositivo embarcado] <-right-> [Command Session]
+[Dispositivo embarcado] <-right-> [Query Session]
 
 @enduml

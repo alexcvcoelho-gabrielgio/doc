@@ -1,4 +1,5 @@
 @startuml
+scale 1920*1080
 UI --> API: Envia mensagem de atulização
 API --> UI: Envia uma mensagem HTTP Ok (200)
 API --> REDIS: Escreve a mensagem em uma lista
