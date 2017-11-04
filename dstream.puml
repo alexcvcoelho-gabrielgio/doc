@@ -1,0 +1,8 @@
+@startditaa
+               RDD @ tempo 1           RDD @ tempo 2         RDD @ tempo 3          RDD @ tempo 4
+             +----------------+     +----------------+     +----------------+     +----------------+
+             | Dados do tempo |     | Dados do tempo |     | Dados do tempo |     | Dados do tempo |
+DStream ---->|    0 ao 1      |---->|    1 ao 2      |---->|     2 ao 3     |---->|     3 ao 4     |---->
+             +----------------+     +----------------+     +----------------+     +----------------+
+
+@endditaa

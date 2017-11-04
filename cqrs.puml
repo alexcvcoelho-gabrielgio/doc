@@ -1,15 +1,16 @@
 @startuml
-scale 1920*1080
-UI --> API: Envia mensagem de atulização
-API --> UI: Envia uma mensagem HTTP Ok (200)
-API --> REDIS: Escreve a mensagem em uma lista
-REDIS --> "Session-Worker": Envia comando
-"Session-Worker" --> "Session-Worker": Validações e regras de negocios
+scale 1024*768
+UI --> "Session-Command": Envia mensagem de atulização
+"Session-Command" --> "Session-Command": Validações e regras de negocios
+"Session-Command" --> UI: Envia uma mensagem HTTP Ok (200)
+"Session-Command" --> KAFKA: Escreve a mensagem em uma lista
+KAFKA --> "Session-Worker": Envia comando
 "Session-Worker" --> Datomic: escreve historico
 "Session-Worker" --> Mongo: atualiza dado completo
 newpage
-UI --> API: GET /api/session/{session-id}
-API --> Mongo: Busca pela informacao
-API <-- Mongo: Informação completa
-API --> UI: Parse infomação para o usuarios
+scale 1024*768
+UI --> "Session-Command": GET /api/session/{session-id}
+"Session-Command" --> Mongo: Busca pela informacao
+"Session-Command" <-- Mongo: Informação completa
+"Session-Command" --> UI: Parse infomação para o usuarios
 @enduml

@@ -1,12 +1,11 @@
 @startuml
+scale 1024*768
 
 skinparam interface {
   backgroundColor RosyBrown
   borderColor orange
 }
 
-
-scale 1920*1080
 
 skinparam component {
   FontSize 13
@@ -27,10 +26,11 @@ package "UI" {
 package "API"{
     [Command Session]
     [Query Session]
+    [Tracking]
 }
 
 package "Banco de dados"{
-    database REDIS
+    database KAFKA
     database MongoDB
     database Datomic
 }
@@ -40,13 +40,15 @@ package "Process"{
     [Session Worker]
 }
 
-[Command Session] -right-> REDIS
+[Command Session] -right-> KAFKA
+[Tracking] -right-> KAFKA
 [Query Session] -right-> MongoDB
-REDIS -left-> [Session Worker]
+KAFKA -left-> [Session Worker]
 [Session Worker] -right-> Datomic
 [Session Worker] -right-> MongoDB
 
 [Dispositivo embarcado] <-right-> [Command Session]
 [Dispositivo embarcado] <-right-> [Query Session]
+[Dispositivo embarcado] <-right-> [Tracking]
 
 @enduml
